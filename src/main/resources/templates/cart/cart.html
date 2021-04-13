@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/template_head::head('Cart')">
+
+</head>
+
+<body>
+<header th:replace="common/template_menu::header">
+</header>
+
+<div id="Content">
+    <div id="BackLink">
+        <a href="/catalog/main" th:text="#{return}">Return to Main Menu</a>
+    </div>
+
+    <div id="Catalog">
+
+        <div id="Cart">
+
+            <h2 th:text="#{cart}">Shopping Cart</h2>
+
+            <form th:action="@{/cart/updateCartQuantities}" name="cart">
+                <table>
+                    <tr>
+                        <th th:text="#{item}"><b>Item ID</b></th>
+                        <th th:text="#{product}"><b>Product ID</b></th>
+                        <th th:text="#{description}"><b>Description</b></th>
+                        <th th:text="#{stock}"><b>In Stock?</b></th>
+                        <th th:text="#{quantity}"><b>Quantity</b></th>
+                        <th th:text="#{price}"><b>List Price</b></th>
+                        <th th:text="#{total}"><b>Total Cost</b></th>
+                        <th>&nbsp;</th>
+                    </tr>
+
+                    <tr th:if="${session.cart?.numberOfItems == 0}">
+                        <td colspan="8" th:text="#{empty}"><b>Your cart is empty.</b></td>
+                    </tr>
+                    <tr th:each="cartItem : ${session.cart?.cartItems}" name="cartItems"
+                        th:id="'tr' + ${cartItem.item.itemId}">
+                        <td><a th:href="@{/catalog/item(itemId=${cartItem.item.itemId})}"
+                               th:text="${cartItem.item.itemId}">${cartItem.item.itemId}</a>
+                        </td>
+                        <td th:text="${cartItem.item.product.productId}">${cartItem.item.product.productId}</td>
+                        <td th:text="${cartItem.item.attribute1}?:' ' + ${cartItem.item.attribute2} + ${cartItem.item.attribute3} + ${cartItem.item.attribute4} + ${cartItem.item.attribute5} + ${cartItem.item.product.name}"></td>
+                        <td th:text="${cartItem.inStock}">${cartItem.inStock}</td>
+                        <td><input type="text" th:id="${cartItem.item.itemId}" th:name="${cartItem.item.itemId}"
+                                   th:value="${cartItem.quantity}" onkeyup="updateTotal(this.name)"></td>
+                        <td>
+                            <th:fmt:formatNumber th:value="${cartItem.item.listPrice}"
+                                                 th:text="'$'+${cartItem.item.listPrice}" pattern="$#,##0.00"/>
+                        </td>
+                        <td>
+                            <th:fmt:formatNumber th:value="${cartItem.total}" th:text="'$'+${cartItem.total}"
+                                                 pattern="$#,##0.00" th:id="${cartItem.item.itemId}+ 'total'"
+                                                 th:name="${cartItem.item.itemId}+ 'total'"/>
+                        </td>
+                        <td><a th:href="@{/cart/removeItemFromCart(workingItemId=${cartItem.item.itemId})}"
+                               class="Button" th:text="#{remove}">Remove</a></td>
+                    </tr>
+                    <tr>
+                        <td colspan="7">
+                            <font th:text="#{sub}">Sub Total:</font>
+                            <th:fmt:formatNumber id="subTotal" th:value="${session.cart?.subTotal}"
+                                                 th:text="'$'+${session.cart?.subTotal}" pattern="$#,##0.00"/>
+                            <input type="submit" th:value="#{Update}"/>
+                        </td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+
+            </form>
+
+            <a th:if="${session.cart?.numberOfItems > 0}" class="Button" href="/order/viewOrderForm" th:text="#{checkout}">Proceed to Checkout</a>
+        </div>
+
+        <div id="Separator">&nbsp;</div>
+    </div>
+</div>
+
+<footer th:replace="common/template_menu::footer">
+</footer>
+<script type="text/javascript" src="/js/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="/js/cart.js"></script>
+</body>
+
+</html>

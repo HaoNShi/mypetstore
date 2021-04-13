@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/template_head::head('Reigster')">
+
+</head>
+<body onload="createCode()">
+<header th:replace="common/template_menu::header">
+</header>
+
+<div id="Content">
+    <div id="Catalog">
+        <form action="/account/register" method="post" name="regForm" onsubmit="return validateCode()">
+            <h3 th:text="#{Information}">User Information</h3>
+
+            <table>
+                <tr>
+                    <td th:text="#{username}">User ID:</td>
+                    <td>
+                        <input type="text" name="username" id="username" onblur="checkUser()">
+                        <br/>
+                        <font color="red" name="uMsg" id="uMsg"></font>
+                    </td>
+                </tr>
+                <tr>
+                    <td th:text="#{password}">New password:</td>
+                    <td><input type="password" name="password" id="password"/></td>
+                </tr>
+                <tr>
+                    <td th:text="#{repeatPassword}">Repeat password:</td>
+                    <td>
+                        <input type="password" name="repeatedPassword" id="repeatedPassword" onblur="checkPwd()">
+                        <br/>
+                        <font color="red" name="pMsg" id="pMsg"></font>
+                    </td>
+                </tr>
+                <tr>
+                    <td th:text="#{verCode}">
+                        Verification code:
+                    </td>
+                    <td>
+                        <input type="text" id="inputCode" onblur="validateCode()">
+                        <font class="code" id="checkCode" onclick="createCode()"></font>
+                        <br/>
+                        <font color="red" id="verMsg"></font>
+                    </td>
+                </tr>
+            </table>
+
+            <div th:replace="account/includeAccountFields::includeAccount"></div>
+
+            <input type="submit" th:value="#{register}">
+
+        </form>
+    </div>
+</div>
+
+<footer th:replace="common/template_menu::footer">
+</footer>
+
+<script type="text/javascript" src="/js/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="/js/register.js"></script>
+<script type="text/javascript" src="/js/verification.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/template_head::head('Login')">
+
+</head>
+
+<body onload="createCode()">
+
+<header th:replace="common/template_menu::header">
+</header>
+
+<div id="Content">
+    <div id="Catalog">
+        <form th:action="@{/account/login}" method="post" onsubmit="return validateCode()">
+
+            <p th:text="#{please}">Please enter your username and password.</p>
+            <table>
+                <tr>
+                    <td>
+                        <font th:text="#{username}">Username:</font></td>
+                    <td>
+                        <input type="text" name="username"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <font th:text="#{password}">Password:</font></td>
+                    <td>
+                        <input type="password" name="password"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <font th:text="#{verCode}">Verification code:</font></td>
+                    <td>
+                        <input type="text" id="inputCode" onblur="validateCode()">
+                        <font class="code" id="checkCode" onclick="createCode()"></font><br/>
+                        <font color="red" id="verMsg"></font>
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" name="signon" th:value="#{Login}">
+        </form>
+        <font th:text="#{need}">Need a user name and password?</font>
+        <a href="/account/viewRegisterForm" th:text="#{registerNow}">
+            Register Now!
+        </a>
+    </div>
+</div>
+
+<footer th:replace="common/template_menu::footer">
+</footer>
+<script type="text/javascript" src="/js/verification.js"></script>
+</body>
+</html>

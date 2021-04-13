@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/template_head::head('editAccount')">
+
+</head>
+<body>
+<header th:replace="common/template_menu::header">
+</header>
+
+<div id="Content">
+    <div id="Catalog">
+        <form action="/account/confirmEdit" method="post">
+
+            <h3 th:fragment="h3" th:text="#{Information}">User Information</h3>
+
+            <table>
+                <tr>
+                    <td th:text="#{userid}">User ID:</td>
+                    <td th:text="${session.account.username}" th:value="${session.account.username}" name="username">
+                        ${sessionScope.account.username}
+                    </td>
+                </tr>
+                <tr>
+                    <td th:text="#{newpsw}">New password:</td>
+                    <td><input type="password" name="password"/></td>
+                </tr>
+                <tr>
+                    <td th:text="#{repeatpsw}">Repeat password:</td>
+                    <td><input type="password" name="repeatedPassword"/></td>
+                    <font color="red" th:text="${message==null?'':message}"></font>
+                </tr>
+            </table>
+
+            <div th:replace="account/includeAccountFields::includeAccount"></div>
+
+            <input type="submit" name="editAccount" th:value="#{save}"/>
+
+        </form>
+        <a href="/order/checkOrder" th:text="#{orders}">My Orders</a>
+    </div>
+</div>
+
+<footer th:replace="common/template_menu::footer">
+</footer>
+</body>
+</html>
