@@ -1,8 +1,8 @@
 package org.csu.mypetstore.controller;
 
 import org.csu.mypetstore.domain.Category;
-import org.csu.mypetstore.domain.Product;
 import org.csu.mypetstore.domain.Item;
+import org.csu.mypetstore.domain.Product;
 import org.csu.mypetstore.service.CatalogService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,11 +19,10 @@ import java.util.List;
 @SessionAttributes({"product", "cart", "account"})
 public class CatalogController {
 
-    @Autowired
-    private CatalogService catalogService;
-
     // 日志功能
     private final Logger logger = LoggerFactory.getLogger(CatalogController.class);
+    @Autowired
+    private CatalogService catalogService;
 
     @GetMapping("/catalog/main")
     public String viewMain(HttpSession session) {
@@ -89,6 +88,4 @@ public class CatalogController {
         logger.info("Search product, keyword: " + keyword);
         return "catalog/searchProduct";
     }
-
-
 }

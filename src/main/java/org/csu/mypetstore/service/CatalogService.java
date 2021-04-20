@@ -1,8 +1,8 @@
 package org.csu.mypetstore.service;
 
 import org.csu.mypetstore.domain.Category;
-import org.csu.mypetstore.domain.Product;
 import org.csu.mypetstore.domain.Item;
+import org.csu.mypetstore.domain.Product;
 
 import java.util.List;
 

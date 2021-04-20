@@ -1,8 +1,9 @@
 package org.csu.mypetstore.service.impl;
 
+import org.csu.mypetstore.domain.Item;
+import org.csu.mypetstore.domain.LineItem;
 import org.csu.mypetstore.domain.Order;
 import org.csu.mypetstore.domain.Sequence;
-import org.csu.mypetstore.domain.Item;
 import org.csu.mypetstore.persistence.ItemMapper;
 import org.csu.mypetstore.persistence.LineItemMapper;
 import org.csu.mypetstore.persistence.OrderMapper;
@@ -14,8 +15,6 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.csu.mypetstore.domain.LineItem;
 
 @Service
 public class OrderServiceImpl implements OrderService {

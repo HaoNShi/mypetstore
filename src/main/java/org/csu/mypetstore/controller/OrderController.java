@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -76,7 +75,6 @@ public class OrderController {
         } else {
             return "order/confirmOrder";
         }
-
     }
 
     @PostMapping("/order/confirmShip")
@@ -115,7 +113,6 @@ public class OrderController {
         model.addAttribute("orderList", orderList);
         logger.info("Check order");
         return "order/listOrders";
-
     }
 
     @GetMapping("/order/viewOrder")
@@ -124,7 +121,5 @@ public class OrderController {
         model.addAttribute("order", order);
         logger.info("View order, orderId:" + order.getOrderId());
         return "order/finalOrder";
-
     }
-
 }

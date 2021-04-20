@@ -1,14 +1,12 @@
 package org.csu.mypetstore.service.impl;
 
+import org.csu.mypetstore.domain.Category;
+import org.csu.mypetstore.domain.Item;
+import org.csu.mypetstore.domain.Product;
+import org.csu.mypetstore.persistence.CategoryMapper;
 import org.csu.mypetstore.persistence.ItemMapper;
 import org.csu.mypetstore.persistence.ProductMapper;
 import org.csu.mypetstore.service.CatalogService;
-
-import org.csu.mypetstore.domain.Category;
-import org.csu.mypetstore.domain.Product;
-import org.csu.mypetstore.domain.Item;
-import org.csu.mypetstore.persistence.CategoryMapper;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

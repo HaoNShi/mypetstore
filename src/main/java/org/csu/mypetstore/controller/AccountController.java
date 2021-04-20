@@ -2,12 +2,12 @@ package org.csu.mypetstore.controller;
 
 import org.csu.mypetstore.domain.Account;
 import org.csu.mypetstore.service.AccountService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Controller;
-
-import org.springframework.validation.BindingResult;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletException;
@@ -20,17 +20,13 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 @Controller
 @SessionAttributes({"account"})
 public class AccountController {
 
+    private final Logger logger = LoggerFactory.getLogger(AccountController.class);
     @Autowired
     private AccountService accountService;
-
-    private final Logger logger = LoggerFactory.getLogger(AccountController.class);
 
     @GetMapping("/account/viewLoginForm")
     public String viewLoginForm() {
